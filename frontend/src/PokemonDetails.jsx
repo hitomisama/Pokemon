@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./PokemonDetails.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 function PokemonDetails() {
   const { name } = useParams();
@@ -33,11 +33,11 @@ function PokemonDetails() {
       <div className="evolution-section">
         <h2>Evolution Chain</h2>
         <div className="evolution-chain">
-          {pokemon.evolution_chain?.length > 0 ? (
-            pokemon.evolution_chain.map((evo, index) => (
+          {pokemon.evolutionChain?.length > 0 ? (
+            pokemon.evolutionChain.map((evo, index) => (
               <span key={index} className="evolution-item">
                 {evo}
-                {index !== pokemon.evolution_chain.length - 1 && " → "}
+                {index !== pokemon.evolutionChain.length - 1 && " → "}
               </span>
             ))
           ) : (
@@ -45,8 +45,9 @@ function PokemonDetails() {
           )}
         </div>
       </div>
-
-      <Link to="/" className="back-button">Back to Search</Link>
+      <Link to="/" className="back-button">
+        Back to Search
+      </Link>
     </div>
   );
 }

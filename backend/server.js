@@ -3,6 +3,8 @@ const axios = require("axios");
 const cors = require("cors");
 
 const app = express();
+const PORT = process.env.PORT || 3000; // ✅ 兼容本地和 Vercel
+
 app.use(cors());
 app.use(express.json());
 
@@ -105,5 +107,12 @@ async function getEvolutionTriggers(chain) {
     return evolutionTriggers;
 }
 
-// ✅ 关键：让 Vercel 识别 `app`
+// ✅ 兼容本地运行
+if (process.env.NODE_ENV !== "production") {
+    app.listen(PORT, () => {
+        console.log(`✅ Server is running at http://localhost:${PORT}`);
+    });
+}
+
+// ✅ 兼容 Vercel
 module.exports = app;

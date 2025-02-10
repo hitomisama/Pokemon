@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import PokemonDetails from "./PokemonDetails";
 import "./App.css";
 
-const API_URL = "https://pokemon-back-pearl.vercel.app";
-
+const API_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:3000"
+    : "https://pokemon-back-pearl.vercel.app";
+    
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
