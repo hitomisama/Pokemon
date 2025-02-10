@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import PokemonDetails from "./PokemonDetails";
 import "./App.css";
 
-const API_URL ='https://pokemon-backend-gray.vercel.app/';
+const API_URL = "https://backend-p2mouaaw3-hitomis-projects-eece4cfc.vercel.app";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
