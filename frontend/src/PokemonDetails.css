@@ -1,0 +1,79 @@
+.pokemon-details-container {
+    background: white;
+    max-width: 500px;
+    padding: 25px;
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .pokemon-details-container h1 {
+    color: #d90000;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .pokemon-details-container p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    font-weight: bold;
+  }
+  
+  .pokemon-details-container img {
+    width: 180px;
+    height: auto;
+    margin: 15px 0;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .pokemon-details-container img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* 进化链 */
+  .evolution-section {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .evolution-section h2 {
+    font-size: 1.5rem;
+    color: #d90000;
+    margin-bottom: 10px;
+  }
+  
+  .evolution-chain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .evolution-item {
+    background: #ffe6e6;
+    padding: 8px 12px;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .back-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }

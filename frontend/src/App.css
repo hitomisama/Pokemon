@@ -1,148 +1,173 @@
-/* 📌 Google 字体 */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Zen+Old+Mincho:wght@400;500;600;700;900&display=swap');
-
-/* 📌 全局样式 */
-:root {
-  --primary-color: #ffcc00; /* 主要颜色 */
-  --secondary-color: #e63946; /* 主要按钮颜色 */
-  --bg-color: #f8f9fa; /* 背景颜色 */
-  --text-color: #333; /* 默认字体颜色 */
-  --border-radius: 8px;
-}
-
+/* 🌟 全局样式 */
 body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #ffebeb, #ffe6e6);
   margin: 0;
   padding: 0;
-  font-family: 'Zen Old Mincho', serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-/* 📌 顶部标题 */
-h1 {
-  font-size: 40px;
   text-align: center;
-  margin: 20px 0;
-  color: var(--secondary-color);
 }
 
-/* 📌 搜索框 */
+/* 🔝 标题样式 */
+.ttl {
+  font-size: 2.5rem;
+  color: #d90000;
+  margin: 20px 0;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔍 搜索框 */
 .search {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  margin: 20px auto;
 }
 
 .search input {
-  width: 250px;
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid var(--primary-color);
-  border-radius: var(--border-radius);
+  width: 280px;
+  padding: 12px;
+  border: 2px solid #d90000;
+  border-radius: 25px;
+  font-size: 1rem;
   outline: none;
+  transition: 0.3s ease;
+}
+
+.search input:focus {
+  border-color: #ff4d4d;
+  box-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
 }
 
 .search button {
-  padding: 10px 15px;
-  margin-left: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: var(--secondary-color);
+  padding: 12px 20px;
+  font-size: 1rem;
   color: white;
+  background: #d90000;
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: 25px;
   cursor: pointer;
-  transition: 0.3s;
+  margin-left: 10px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .search button:hover {
-  background-color: #d62828;
+  background: #a70000;
+  transform: scale(1.05);
 }
 
-/* 📌 页面布局 */
-.content {
-  display: flex;
-  justify-content: center;
-  gap: 5vw;
-  padding: 20px;
-  flex-wrap: wrap;
-}
-
-/* 📌 宝可梦列表 */
+/* 📋 Pokémon 列表 */
 .pokemonlist {
-  width: 300px;
   background: white;
-  padding: 15px;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pokemonlist h2 {
-  text-align: center;
-  color: var(--primary-color);
+  color: #d90000;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 
 .pokemonlist ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
-  margin: 0;
 }
 
 .pokemonlist li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.pokemonlist li:last-child {
-  border-bottom: none;
+  margin: 10px 0;
 }
 
 .pokemonlist button {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: none;
-  background-color: var(--primary-color);
-  color: black;
+  background-color: white;
+  color: #d90000;
+  border: 2px solid #d90000;
+  padding: 12px 20px;
+  border-radius: 25px;
   cursor: pointer;
-  border-radius: var(--border-radius);
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .pokemonlist button:hover {
-  background-color: #ffb700;
+  background-color: #d90000;
+  color: white;
+  transform: scale(1.05);
 }
 
-/* 📌 宝可梦详情 */
+/* 🏆 Pokémon 详情 */
 .pokemon {
-  width: 300px;
   background: white;
-  padding: 15px;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .pokemon h2 {
-  color: var(--secondary-color);
+  color: #d90000;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.pokemon p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  font-weight: bold;
 }
 
 .pokemon img {
-  width: 150px;
+  width: 180px;
   height: auto;
-  margin: 10px 0;
+  margin: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-/* 📌 响应式布局 */
-@media (max-width: 768px) {
-  .content {
-    flex-direction: column;
-    align-items: center;
+.pokemon img:hover {
+  transform: scale(1.1);
+}
+
+/* 🔗 详情按钮 */
+.details-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 15px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* 📌 布局 */
+.content {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* 📱 响应式优化 */
+@media (max-width: 600px) {
+  .search input {
+    width: 220px;
   }
 
   .pokemonlist, .pokemon {
-    width: 90%;
+    max-width: 90%;
   }
 }
