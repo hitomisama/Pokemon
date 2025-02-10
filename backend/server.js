@@ -14,7 +14,6 @@ app.get('/api/pokemon', async (req, res) => {
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10');
         const pokemonList = response.data.results;
 
-        // 获取每个宝可梦的日文名字
         const updatedPokemonList = await Promise.all(
             pokemonList.map(async (pokemon) => {
                 const speciesRes = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.name}`);
@@ -39,20 +38,21 @@ app.get('/api/pokemon', async (req, res) => {
 app.get('/api/pokemon/:name', async (req, res) => {
     try {
         const { name } = req.params;
+        const decodedName = decodeURIComponent(name); // 🔹 解码 URL 编码的日文字符
 
-        // 获取基本信息
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-        const speciesRes = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
+        console.log(`🔍 请求宝可梦: ${decodedName}`);
 
-        console.log("📝 获取的 speciesRes 数据:", speciesRes.data.names);
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${decodedName}`);
+        const speciesRes = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${decodedName}`);
 
-        // 查找日文名字
+        console.log("📝 API 返回的数据:", speciesRes.data); // 🔹 打印 JSON，检查 `names` 是否存在
+
         const japaneseNameEntry = speciesRes.data.names.find(n => n.language.name === "ja");
         const japaneseName = japaneseNameEntry ? japaneseNameEntry.name : response.data.name;
 
         res.json({
-            name: japaneseName, // 日文名字
-            originalName: response.data.name, // 英文名字
+            name: japaneseName,
+            originalName: response.data.name,
             id: response.data.id,
             types: response.data.types.map(t => t.type.name),
             sprites: response.data.sprites
@@ -62,7 +62,6 @@ app.get('/api/pokemon/:name', async (req, res) => {
         res.status(500).json({ error: `无法获取 ${req.params.name} 的数据` });
     }
 });
-
 // 启动服务器
 app.listen(PORT, () => {
     console.log(`✅ 服务器运行在 http://localhost:${PORT}`);
