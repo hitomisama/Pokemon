@@ -13,8 +13,9 @@ function App() {
     fetch(`${API_URL}/api/pokemon`)
       .then((response) => response.json())
       .then((data) => {
-        if (Array.isArray(data)) {
+        if (Array.isArray(data) && data.length > 0) {
           setPokemonList(data);
+          fetchPokemonDetails(data[0].originalName); // 🔹 加载第一个宝可梦的详情
         } else {
           console.error("❌ API 数据格式错误:", data);
         }
@@ -26,7 +27,10 @@ function App() {
   const fetchPokemonDetails = (name) => {
     fetch(`${API_URL}/api/pokemon/${name}`)
       .then((response) => response.json())
-      .then((data) => setSelectedPokemon(data))
+      .then((data) => {
+        setSelectedPokemon(data);
+        setSearchTerm(""); // 🔹 清空搜索框
+      })
       .catch((error) => console.error(`❌ 获取 ${name} 详情失败:`, error));
   };
 
@@ -67,16 +71,17 @@ function App() {
             {pokemonList.map((pokemon, index) => (
               <li key={index}>
                 <button onClick={() => fetchPokemonDetails(pokemon.originalName)}>
-                  {pokemon.name} ({pokemon.originalName})
+                  {pokemon.name} 
                 </button>
               </li>
             ))}
           </ul>
         </div>
+
         {/* 🔹 显示宝可梦详情 */}
         {selectedPokemon && (
           <div className="pokemon">
-            <h2>{selectedPokemon.name} ({selectedPokemon.originalName})</h2>
+            <h2>{selectedPokemon.name}</h2>
             <p>図鑑番号: {selectedPokemon.id}</p>
             <p>
               タイプ: {selectedPokemon.types.join(", ")}
