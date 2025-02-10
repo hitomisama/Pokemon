@@ -1,42 +1,148 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* 📌 Google 字体 */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Zen+Old+Mincho:wght@400;500;600;700;900&display=swap');
+
+/* 📌 全局样式 */
+:root {
+  --primary-color: #ffcc00; /* 主要颜色 */
+  --secondary-color: #e63946; /* 主要按钮颜色 */
+  --bg-color: #f8f9fa; /* 背景颜色 */
+  --text-color: #333; /* 默认字体颜色 */
+  --border-radius: 8px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Zen Old Mincho', serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* 📌 顶部标题 */
+h1 {
+  font-size: 40px;
+  text-align: center;
+  margin: 20px 0;
+  color: var(--secondary-color);
+}
+
+/* 📌 搜索框 */
+.search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search input {
+  width: 250px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  outline: none;
+}
+
+.search button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search button:hover {
+  background-color: #d62828;
+}
+
+/* 📌 页面布局 */
+.content {
+  display: flex;
+  justify-content: center;
+  gap: 5vw;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+/* 📌 宝可梦列表 */
+.pokemonlist {
+  width: 300px;
+  background: white;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pokemonlist h2 {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.pokemonlist ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pokemonlist li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.pokemonlist li:last-child {
+  border-bottom: none;
+}
+
+.pokemonlist button {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  background-color: var(--primary-color);
+  color: black;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: 0.3s;
+}
+
+.pokemonlist button:hover {
+  background-color: #ffb700;
+}
+
+/* 📌 宝可梦详情 */
+.pokemon {
+  width: 300px;
+  background: white;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.pokemon h2 {
+  color: var(--secondary-color);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.pokemon img {
+  width: 150px;
+  height: auto;
+  margin: 10px 0;
+}
+
+/* 📌 响应式布局 */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .pokemonlist, .pokemon {
+    width: 90%;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
