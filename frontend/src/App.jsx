@@ -2,33 +2,35 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import PokemonDetails from "./PokemonDetails";
 import "./App.css";
+// import { response } from "../../backend/server";
 
-const API_URL =
-  import.meta.env.MODE === "development"
-    ? "http://localhost:3000"
-    : "https://pokemon-back-pearl.vercel.app";
-    
+const API_URL = "https://pokeapi.co/api/v2";
+
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch(`${API_URL}/api/pokemon`)
+    fetch(`${API_URL}/pokemon?limit=20`)
+      //データの転換
       .then((response) => response.json())
       .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setPokemonList(data);
+        console.log("pokemonList", data.results);
+        if (Array.isArray(data.results) && data.results.length > 0) {
+          setPokemonList(data.results);
           fetchPokemonDetails("pikachu"); // **默认加载 Pikachu**
         } else {
-          console.error("❌ Invalid API response:", data);
+          console.error("❌ Invalid API response:", data.results);
         }
       })
-      .catch((error) => console.error("❌ Failed to fetch Pokémon list:", error));
+      .catch((error) =>
+        console.error("❌ Failed to fetch Pokémon list:", error)
+      );
   }, []);
 
   const fetchPokemonDetails = (name) => {
-    fetch(`${API_URL}/api/pokemon/${name}`)
+    fetch(`${API_URL}/pokemon/${name}`)
       .then((response) => response.json())
       .then((data) => setSelectedPokemon(data))
       .catch((error) => console.error(`❌ Failed to fetch ${name}:`, error));
@@ -73,9 +75,9 @@ function App() {
                     {pokemonList.map((pokemon, index) => (
                       <li key={index}>
                         <button
-                          onClick={() => fetchPokemonDetails(pokemon.originalName)}
+                          onClick={() => fetchPokemonDetails(pokemon.name)}
                         >
-                          {pokemon.originalName}
+                          {pokemon.name}
                         </button>
                       </li>
                     ))}
@@ -84,16 +86,25 @@ function App() {
 
                 {selectedPokemon && (
                   <div className="pokemon">
-                    <h2>{selectedPokemon.originalName}</h2>
+                    <h2>{selectedPokemon.name}</h2>
                     <p>Dex Number: {selectedPokemon.id}</p>
-                    <p>Type: {selectedPokemon.types?.join(", ")}</p>
+                    <p>
+                      Type:
+                      {selectedPokemon.types.map((iteam, key) => (
+                        <span key={key}>{iteam.type.name}</span>
+                      ))}
+                    </p>
+
                     <img
                       src={selectedPokemon.sprites?.front_default}
-                      alt={selectedPokemon.originalName}
+                      alt={selectedPokemon.name}
                     />
                     <br />
                     {/* 🔗 跳转到详细信息页面 */}
-                    <Link to={`/pokemon/${selectedPokemon.originalName}`} className="details-button">
+                    <Link
+                      to={`/pokemon/${selectedPokemon.name}`}
+                      className="details-button"
+                    >
                       View More Details
                     </Link>
                   </div>
